@@ -1,7 +1,7 @@
 const prisma = require('../../config/prisma.config');
 const { handleError } = require('../../helpers/error-handlers');
 
-const UserRegisterService = async (data) =>{
+const UserRegisterService = async (res,data) =>{
     console.log(data)
     const isUserExist = await prisma.user.findUnique({
             where: {  //where is used to filter data based on unique fields
@@ -9,7 +9,7 @@ const UserRegisterService = async (data) =>{
             }
         })
         if(isUserExist){
-            return handleError(res,"User already exists")
+            return handleError(res,"User already exists",401)
         }
        const result = await prisma.user.create({
         data

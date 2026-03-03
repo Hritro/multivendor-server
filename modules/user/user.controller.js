@@ -6,7 +6,7 @@ const {handleSuccess} = require('../../helpers/success-handler');
 const UserRefisterController = async (req,res) => {
     const data = req.body;
     try{
-        const result = await UserRegisterService(data)
+        const result = await UserRegisterService(res,data)
         handleSuccess(res, result);
     }catch(error){
         handleError(res, error)
